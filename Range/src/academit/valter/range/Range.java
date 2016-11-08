@@ -39,43 +39,43 @@ public class Range {
     }
 
     public Range crossing(Range nCut) {
-        if (notCrossingPoint(Range.this, nCut)) {
+        if (this.to < nCut.from || this.from > nCut.to) {
             return null;
         }
-        double localFrom = Math.max(this.from, nCut.from);
-        double localTo = Math.max(this.to, nCut.to);
-        return new Range(localFrom, localTo);
+        return new Range(Math.max(this.from, nCut.from), Math.min(this.to, nCut.to));
     }
 
-    public Range[] union(Range nCut) {
-        if (notCrossingPoint(Range.this, nCut)) {
-            return new Range[]{
-                    new Range(nCut.from, nCut.to),
-                    new Range(this.from, this.to)
-            };
-        } else {
-            double localFrom = Math.min(this.from, nCut.from);
-            double localTo = Math.min(this.to, nCut.to);
-            return new Range[]{
-                    new Range(localFrom, localTo)
-            };
-        }
+    public Range union(Range nCut) {
+        return new Range(Math.min(this.from, nCut.from), Math.max(this.to, nCut.to));
     }
 
     public Range[] difference(Range nCut) {
-        if (this.to <= nCut.from || nCut.to <= this.from) {
-            return new Range[]{
-                    new Range(nCut.from, nCut.to),
-                    new Range(this.from, this.to)};
-        } else if (notCrossingPoint(Range.this, nCut)) {
-            return new Range[]{
-                    new Range(this.from, this.to)};
-        } else if (this.from >= nCut.from && this.to <= nCut.to) {
-            double maxCut = Math.max(this.to, nCut.to);
-            return new Range[]{
-                    new Range(this.from, maxCut)};
-        } else {
-            return new Range[0];
+        if (notCrossingPoint(Range.this, nCut)) {
+            if (this.from <= nCut.from && this.to >= nCut.to) {
+                return new Range[]{
+                        new Range(this.from, nCut.from),
+                        new Range(nCut.to, this.to)
+                };
+            }
+
+            if (this.from <= nCut.from && this.to <= nCut.to) {
+                return new Range[]{
+                        new Range(this.from, nCut.from)
+                };
+            }
+
+            if (this.from >= nCut.from && this.to >= nCut.to) {
+                return new Range[]{
+                        new Range(nCut.to, this.to)
+                };
+            }
+
+            if (this.from >= nCut.from && this.to <= nCut.to) {
+                return new Range[0];
+            }
         }
+        return new Range[]{
+                new Range(this.from, this.to)
+        };
     }
 }
