@@ -12,4 +12,9 @@ public interface Shape {
 
     String getName();
 
+    boolean equals(Object obj);
+
+    int hashCode();
+
+    String toString();
 }

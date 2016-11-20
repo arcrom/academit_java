@@ -28,4 +28,23 @@ public class Rectangle implements Shape {
     public String getName() {
         return "Rectangle";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this == obj;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 1;
+        int localNumber = 15;
+        result = localNumber * result + (int) this.height;
+        result = localNumber * result + (int) this.width;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Фигура: " + getName() + ", Высота: " + this.height + ", Ширина: " + this.width;
+    }
 }

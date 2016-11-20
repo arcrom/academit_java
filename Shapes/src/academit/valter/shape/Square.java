@@ -29,4 +29,21 @@ public class Square implements Shape {
         return "Square";
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return this == obj;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 1;
+        int localNumber = 19;
+        result = localNumber * result + (int) this.side;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Фигура: " + getName() + ", Сторона: " + this.side;
+    }
 }

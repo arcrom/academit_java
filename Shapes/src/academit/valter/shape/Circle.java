@@ -26,4 +26,22 @@ public class Circle implements Shape {
     public String getName() {
         return "Circle";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this == obj;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 1;
+        int localNumber = 17;
+        result = localNumber * result + (int) this.radius;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Фигура: " + getName() + ", Радиус: " + this.radius;
+    }
 }

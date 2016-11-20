@@ -47,4 +47,27 @@ public class Triangle implements Shape {
     public String getName() {
         return "Triangle";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this == obj;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 1;
+        int localNumber = 19;
+        result = localNumber * result + (int) sideLength(x1, y1, x2, y2);
+        result = localNumber * result + (int) sideLength(x2, y2, x3, y3);
+        result = localNumber * result + (int) sideLength(x1, y1, x3, y3);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Фигура: " + getName()
+                + ", Сторона А: " + sideLength(x1, y1, x2, y2)
+                + ", Сторона B: " + sideLength(x2, y2, x3, y3)
+                + ", Сторона C: " + sideLength(x1, y1, x3, y3);
+    }
 }
