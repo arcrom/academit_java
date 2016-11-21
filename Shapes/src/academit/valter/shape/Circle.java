@@ -29,7 +29,18 @@ public class Circle implements Shape {
 
     @Override
     public boolean equals(Object obj) {
-        return this == obj;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (this.getClass() == obj.getClass()) {
+            Circle other = (Circle) obj;
+            return radius == other.radius;
+        } else {
+            return false;
+        }
     }
 
     @Override

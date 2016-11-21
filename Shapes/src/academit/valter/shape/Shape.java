@@ -11,10 +11,4 @@ public interface Shape {
     double getPerimeter();
 
     String getName();
-
-    boolean equals(Object obj);
-
-    int hashCode();
-
-    String toString();
 }

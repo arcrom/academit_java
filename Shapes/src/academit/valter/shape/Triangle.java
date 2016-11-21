@@ -50,7 +50,20 @@ public class Triangle implements Shape {
 
     @Override
     public boolean equals(Object obj) {
-        return this == obj;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (this.getClass() == obj.getClass()) {
+            Triangle other = (Triangle) obj;
+            return
+                    x1 == other.x1 && x2 == other.x2 && x3 == other.x3 &&
+                            y1 == other.y1 && y2 == other.y2 && y3 == other.y3;
+        } else {
+            return false;
+        }
     }
 
     @Override
