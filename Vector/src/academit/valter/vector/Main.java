@@ -2,19 +2,29 @@ package academit.valter.vector;
 
 public class Main {
     public static void main(String[] args) {
-        Vector vector1 = new Vector(10);
 
-
-        double[] array = {5, 4, 3, 2, 1};
+        double[] array1 = {11, 4, 3, 2, 1};
         double[] array2 = {55, 44, 33, 22, 11};
-        Vector vector2 = new Vector(7, array2);
+        double[] array3 = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+        Vector vectorOne = new Vector(7, array1);
+        Vector vectorTwo = new Vector(array2);
+        Vector vectorThree = new Vector(vectorOne);
 
-//        for (int i = 0; i < vector2.getValue().length; i++) {
-//            System.out.println(vector2.getValue()[i]);
+//        Копирование части массива в вектор
+//        for (int i = 0; i < vectorOne.getSize(); i++){
+//            System.out.println(vectorOne.getValue(i));
 //        }
 
-       Vector vector3 = new Vector(2);
+//        Копирование массива в вектор
+//        for (int i = 0; i < vectorTwo.getSize(); i++) {
+//            System.out.println(vectorTwo.getValue(i));
+//        }
 
-        System.out.println(vector2.toString());
+//        Копирование вектора
+//        for (int i = 0; i < vectorThree.getSize(); i++) {
+//            System.out.println(vectorThree.getValue(i));
+//        }
+
+        System.out.println(vectorTwo.toString());
     }
 }

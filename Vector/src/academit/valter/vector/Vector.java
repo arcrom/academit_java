@@ -5,23 +5,29 @@ public class Vector {
 
     public Vector(int size) {
         if (size <= 0) {
-            throw new IllegalArgumentException("Массив не может быть меньше нуля");
+            throw new IllegalArgumentException("Массив не может быть <=0");
         } else {
             this.value = new double[size];
         }
     }
 
     public Vector(double[] value) {
-        this.value = value;
+        this(value.length, value);
     }
 
     public Vector(Vector vector) {
         this.value = new double[vector.value.length];
+        System.arraycopy(vector.value, 0, this.value, 0, vector.value.length);
     }
 
     public Vector(int size, double[] value) {
         if (size <= 0) {
-            throw new IllegalArgumentException("Массив не может быть меньше нуля");
+            throw new IllegalArgumentException("Массив не может быть <=0");
+        } else if (size < value.length) {
+            this.value = new double[size];
+            for (int i = 0; i < size; i++) {
+                this.value[i] = value[i];
+            }
         } else {
             this.value = new double[size];
             for (int i = 0; i < value.length; i++) {
@@ -34,26 +40,24 @@ public class Vector {
         return value.length;
     }
 
-    public double[] getValue() {
-        return value;
+    public double getValue(int i) {
+        return value[(int) i];
     }
 
-    public void setValue(double[] value) {
-        this.value = value;
+    public void setValue(int element, double value) {
+        this.value[element] = value;
     }
 
     @Override
     public String toString() {
-        String string = "{";
+        StringBuilder string = new StringBuilder("{");
         for (int i = 0; i < value.length; i++) {
             if (i == value.length - 1) {
-                string += (int) value[i] + "}";
+                string.append(getValue(i)).append("}");
             } else {
-                string += (int) value[i] + ",";
+                string.append(getValue(i)).append(", ");
             }
         }
-        return string;
+        return String.valueOf(string);
     }
-
-    ;
 }
