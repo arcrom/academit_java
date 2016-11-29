@@ -6,9 +6,14 @@ public class Main {
         double[] array1 = {11, 4, 3, 2, 1};
         double[] array2 = {55, 44, 33, 22, 11};
         double[] array3 = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+        double[] array4 = {1, 2, 3};
+        double[] array5 = {4, 5};
         Vector vectorOne = new Vector(7, array1);
         Vector vectorTwo = new Vector(array2);
         Vector vectorThree = new Vector(vectorOne);
+        Vector vectorFour = new Vector(array4);
+        Vector vectorFive = new Vector(array5);
+
 
 //        Копирование части массива в вектор
 //        for (int i = 0; i < vectorOne.getSize(); i++){
@@ -18,13 +23,16 @@ public class Main {
 //        Копирование массива в вектор
 //        for (int i = 0; i < vectorTwo.getSize(); i++) {
 //            System.out.println(vectorTwo.getValue(i));
-//        }
+//       }
 
 //        Копирование вектора
 //        for (int i = 0; i < vectorThree.getSize(); i++) {
 //            System.out.println(vectorThree.getValue(i));
 //        }
 
-        System.out.println(vectorTwo.toString());
+//        Добавление вектора к другому вектору
+        System.out.println(vectorFour.add(vectorFive));
+
+
     }
 }

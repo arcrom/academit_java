@@ -48,6 +48,19 @@ public class Vector {
         this.value[element] = value;
     }
 
+    public Vector add(Vector vector) {
+        int sizeThis = this.value.length;
+        int sizeCopy = vector.value.length;
+        Vector newArray = new Vector(sizeThis + sizeCopy);
+        for (int i = 0; i < sizeThis + sizeCopy; i++)
+            if (i < sizeThis) {
+                newArray.value[i] = value[i];
+            } else {
+                newArray.value[i] = vector.value[i - sizeThis];
+            }
+        return newArray;
+    }
+
     @Override
     public String toString() {
         StringBuilder string = new StringBuilder("{");
