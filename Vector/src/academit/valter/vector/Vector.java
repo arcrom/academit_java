@@ -23,42 +23,118 @@ public class Vector {
     public Vector(int size, double[] value) {
         if (size <= 0) {
             throw new IllegalArgumentException("Массив не может быть <=0");
-        } else if (size < value.length) {
-            this.value = new double[size];
-            for (int i = 0; i < size; i++) {
-                this.value[i] = value[i];
-            }
         } else {
             this.value = new double[size];
-            for (int i = 0; i < value.length; i++) {
-                this.value[i] = value[i];
-            }
+            System.arraycopy(value, 0, this.value, 0, value.length);
         }
     }
 
-    public int getSize() {
+    public double getSize() {
         return value.length;
     }
 
+    public double getLength() {
+        double length = 0;
+        for (int i = 0; i < this.value.length; i++) {
+            length += Math.pow(this.value[i], 2);
+        }
+        return Math.sqrt(length);
+    }
+
     public double getValue(int i) {
-        return value[(int) i];
+        return value[i];
     }
 
-    public void setValue(int element, double value) {
-        this.value[element] = value;
+    public double setValue(int element, double value) {
+        return this.value[element] = value;
     }
 
-    public Vector add(Vector vector) {
-        int sizeThis = this.value.length;
-        int sizeCopy = vector.value.length;
-        Vector newArray = new Vector(sizeThis + sizeCopy);
-        for (int i = 0; i < sizeThis + sizeCopy; i++)
-            if (i < sizeThis) {
-                newArray.value[i] = value[i];
-            } else {
-                newArray.value[i] = vector.value[i - sizeThis];
+    public Vector plus(Vector vector) {
+        if (this.value.length > vector.value.length) {
+            for (int i = 0; i < vector.value.length; i++) {
+                this.value[i] += vector.value[i];
             }
-        return newArray;
+            return this;
+        } else {
+            Vector newVector = new Vector(vector.value.length);
+            System.arraycopy(value, 0, newVector.value, 0, value.length);
+            for (int i = 0; i < newVector.value.length; i++) {
+                newVector.value[i] += vector.value[i];
+            }
+            return newVector;
+        }
+    }
+
+    public Vector minus(Vector vector) {
+        if (this.value.length > vector.value.length) {
+            for (int i = 0; i < vector.value.length; i++) {
+                this.value[i] -= vector.value[i];
+            }
+            return this;
+        } else {
+            Vector newVector = new Vector(vector.value.length);
+            System.arraycopy(value, 0, newVector.value, 0, value.length);
+            for (int i = 0; i < newVector.value.length; i++) {
+                newVector.value[i] -= vector.value[i];
+            }
+            return newVector;
+        }
+    }
+
+    public Vector scalar(double scalar) {
+        for (int i = 0; i < this.getSize(); i++) {
+            this.value[i] *= scalar;
+        }
+        return this;
+    }
+
+    public Vector reverse() {
+        for (int i = 0; i < this.getSize(); i++) {
+            this.value[i] *= -1;
+        }
+        return this;
+    }
+
+    public static Vector sum(Vector a, Vector b) {
+        return a.plus(b);
+    }
+
+    public static Vector minus(Vector a, Vector b) {
+        return a.minus(b);
+    }
+
+    public static double scalar(Vector a, Vector b) {
+        double scalarSum = 0;
+        if (a.getSize() > b.getSize()) {
+            for (int i = 0; i < b.getSize(); i++) {
+                scalarSum += a.value[i] * b.value[i];
+            }
+        } else {
+            for (int i = 0; i < a.getSize(); i++) {
+                scalarSum += a.value[i] * b.value[i];
+            }
+        }
+        return scalarSum;
+    }
+
+    @Override
+    public boolean equals(Object vector) {
+        if (this.getClass() != vector.getClass()) {
+            return false;
+        }
+        Vector localVector = (Vector) vector;
+        if (this.getSize() != localVector.getSize()) {
+            return false;
+        }
+        double epsilon = 0.0001;
+        for (int i = 0; i < this.getSize(); i++) {
+            double a = this.value[i];
+            double b = localVector.value[i];
+            if (Math.abs(a - b) > epsilon) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -71,6 +147,16 @@ public class Vector {
                 string.append(getValue(i)).append(", ");
             }
         }
-        return String.valueOf(string);
+        return string.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 1;
+        int localNumber = 15;
+        for (int i = 0; i < this.value.length; i++) {
+            result = (int) (localNumber * result + this.value[i]);
+        }
+        return result;
     }
 }

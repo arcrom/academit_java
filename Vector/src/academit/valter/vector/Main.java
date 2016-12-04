@@ -13,6 +13,8 @@ public class Main {
         Vector vectorThree = new Vector(vectorOne);
         Vector vectorFour = new Vector(array4);
         Vector vectorFive = new Vector(array5);
+        Vector vector6 = new Vector(array4);
+        Vector vector7 = new Vector(array5);
 
 
 //        Копирование части массива в вектор
@@ -30,9 +32,28 @@ public class Main {
 //            System.out.println(vectorThree.getValue(i));
 //        }
 
-//        Добавление вектора к другому вектору
-        System.out.println(vectorFour.add(vectorFive));
+//        plus
+//        System.out.println(vectorFour.plus(vectorFive));
+//        System.out.println(vector7.plus(vector6));
 
+//        minus
+//        System.out.println(vectorFour.minus(vectorFive));
+//        System.out.println(vector7.minus(vector6));
 
+//        Скаляр
+//        System.out.println(vector6.scalar(3));
+//        Длинна
+//        System.out.println(vector6.getLength());
+//        Разворот
+//        System.out.println(vector6.reverse());
+//        equals
+//        System.out.println(vector6.equals(vector7));
+//        hashCode
+//        System.out.println(vectorTwo.hashCode());
+
+//        Статическая функция суммы векторов
+//        System.out.println(Vector.sum(vectorFour,vectorTwo));
+
+        System.out.println(Vector.scalar(vectorFour,vectorFive));
     }
 }
