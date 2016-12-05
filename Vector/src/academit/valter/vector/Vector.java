@@ -25,7 +25,8 @@ public class Vector {
             throw new IllegalArgumentException("Массив не может быть <=0");
         } else {
             this.value = new double[size];
-            System.arraycopy(value, 0, this.value, 0, value.length);
+            int countArray = Math.min(size, value.length);
+            System.arraycopy(value, 0, this.value, 0, countArray);
         }
     }
 
@@ -35,8 +36,8 @@ public class Vector {
 
     public double getLength() {
         double length = 0;
-        for (int i = 0; i < this.value.length; i++) {
-            length += Math.pow(this.value[i], 2);
+        for (double localValue : this.value) {
+            length += Math.pow(localValue, 2);
         }
         return Math.sqrt(length);
     }
@@ -89,10 +90,7 @@ public class Vector {
     }
 
     public Vector reverse() {
-        for (int i = 0; i < this.getSize(); i++) {
-            this.value[i] *= -1;
-        }
-        return this;
+        return scalar(-1);
     }
 
     public static Vector sum(Vector a, Vector b) {
@@ -105,20 +103,20 @@ public class Vector {
 
     public static double scalar(Vector a, Vector b) {
         double scalarSum = 0;
-        if (a.getSize() > b.getSize()) {
-            for (int i = 0; i < b.getSize(); i++) {
-                scalarSum += a.value[i] * b.value[i];
-            }
-        } else {
-            for (int i = 0; i < a.getSize(); i++) {
-                scalarSum += a.value[i] * b.value[i];
-            }
+        for (int i = 0; i < Math.min(b.getSize(), a.getSize()); i++) {
+            scalarSum += a.value[i] * b.value[i];
         }
         return scalarSum;
     }
 
     @Override
     public boolean equals(Object vector) {
+        if (this == vector) {
+            return true;
+        }
+        if (vector == null) {
+            return false;
+        }
         if (this.getClass() != vector.getClass()) {
             return false;
         }
@@ -154,8 +152,8 @@ public class Vector {
     public int hashCode() {
         int result = 1;
         int localNumber = 15;
-        for (int i = 0; i < this.value.length; i++) {
-            result = (int) (localNumber * result + this.value[i]);
+        for (double localValue : this.value) {
+            result = (int) (localNumber * result + localValue);
         }
         return result;
     }

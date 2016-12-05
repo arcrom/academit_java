@@ -9,6 +9,7 @@ public class Main {
         double[] array4 = {1, 2, 3};
         double[] array5 = {4, 5};
         Vector vectorOne = new Vector(7, array1);
+        Vector vector1 = new Vector(array1);
         Vector vectorTwo = new Vector(array2);
         Vector vectorThree = new Vector(vectorOne);
         Vector vectorFour = new Vector(array4);
@@ -16,6 +17,7 @@ public class Main {
         Vector vector6 = new Vector(array4);
         Vector vector7 = new Vector(array5);
 
+        System.out.println(vector1.plus(vectorTwo));
 
 //        Копирование части массива в вектор
 //        for (int i = 0; i < vectorOne.getSize(); i++){
@@ -54,6 +56,6 @@ public class Main {
 //        Статическая функция суммы векторов
 //        System.out.println(Vector.sum(vectorFour,vectorTwo));
 
-        System.out.println(Vector.scalar(vectorFour,vectorFive));
+//        System.out.println(Vector.scalar(vectorFour,vectorFive));
     }
 }
