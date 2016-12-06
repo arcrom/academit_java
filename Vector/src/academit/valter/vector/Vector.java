@@ -57,12 +57,13 @@ public class Vector {
             }
             return this;
         } else {
-            Vector newVector = new Vector(vector.value.length);
-            System.arraycopy(value, 0, newVector.value, 0, value.length);
-            for (int i = 0; i < newVector.value.length; i++) {
-                newVector.value[i] += vector.value[i];
+            double[] mass = new double[value.length];
+            System.arraycopy(value, 0, mass, 0, value.length);
+            for (int i = 0; i < mass.length; i++) {
+                mass[i] += vector.value[i];
             }
-            return newVector;
+            this.value = mass;
+            return this;
         }
     }
 
@@ -73,12 +74,13 @@ public class Vector {
             }
             return this;
         } else {
-            Vector newVector = new Vector(vector.value.length);
-            System.arraycopy(value, 0, newVector.value, 0, value.length);
-            for (int i = 0; i < newVector.value.length; i++) {
-                newVector.value[i] -= vector.value[i];
+            double[] mass = new double[value.length];
+            System.arraycopy(value, 0, mass, 0, value.length);
+            for (int i = 0; i < mass.length; i++) {
+                mass[i] -= vector.value[i];
             }
-            return newVector;
+            this.value = mass;
+            return this;
         }
     }
 

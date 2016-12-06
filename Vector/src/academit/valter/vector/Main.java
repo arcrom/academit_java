@@ -17,7 +17,7 @@ public class Main {
         Vector vector6 = new Vector(array4);
         Vector vector7 = new Vector(array5);
 
-        System.out.println(vector1.plus(vectorTwo));
+        System.out.println(vector1.minus(vectorTwo));
 
 //        Копирование части массива в вектор
 //        for (int i = 0; i < vectorOne.getSize(); i++){
