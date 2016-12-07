@@ -51,15 +51,15 @@ public class Vector {
     }
 
     public Vector plus(Vector vector) {
-        if (this.value.length > vector.value.length) {
+        if (this.value.length >= vector.value.length) {
             for (int i = 0; i < vector.value.length; i++) {
                 this.value[i] += vector.value[i];
             }
             return this;
         } else {
-            double[] mass = new double[value.length];
-            System.arraycopy(value, 0, mass, 0, value.length);
-            for (int i = 0; i < mass.length; i++) {
+            double[] mass = new double[vector.value.length];
+            System.arraycopy(this.value, 0, mass, 0, this.value.length);
+            for (int i = 0; i < vector.value.length; i++) {
                 mass[i] += vector.value[i];
             }
             this.value = mass;
@@ -68,15 +68,15 @@ public class Vector {
     }
 
     public Vector minus(Vector vector) {
-        if (this.value.length > vector.value.length) {
+        if (this.value.length >= vector.value.length) {
             for (int i = 0; i < vector.value.length; i++) {
                 this.value[i] -= vector.value[i];
             }
             return this;
         } else {
-            double[] mass = new double[value.length];
-            System.arraycopy(value, 0, mass, 0, value.length);
-            for (int i = 0; i < mass.length; i++) {
+            double[] mass = new double[vector.value.length];
+            System.arraycopy(this.value, 0, mass, 0, this.value.length);
+            for (int i = 0; i < vector.value.length; i++) {
                 mass[i] -= vector.value[i];
             }
             this.value = mass;
@@ -96,11 +96,13 @@ public class Vector {
     }
 
     public static Vector sum(Vector a, Vector b) {
-        return a.plus(b);
+        Vector localVector = new Vector((int) Math.max(a.getSize(), b.getSize()));
+        return localVector.plus(a).plus(b);
     }
 
     public static Vector minus(Vector a, Vector b) {
-        return a.minus(b);
+        Vector localVector = new Vector((int) Math.max(a.getSize(), b.getSize()));
+        return localVector.minus(a).minus(b);
     }
 
     public static double scalar(Vector a, Vector b) {

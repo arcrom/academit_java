@@ -11,13 +11,19 @@ public class Main {
         Vector vectorOne = new Vector(7, array1);
         Vector vector1 = new Vector(array1);
         Vector vectorTwo = new Vector(array2);
+        Vector vector3 = new Vector(array3);
         Vector vectorThree = new Vector(vectorOne);
         Vector vectorFour = new Vector(array4);
         Vector vectorFive = new Vector(array5);
         Vector vector6 = new Vector(array4);
         Vector vector7 = new Vector(array5);
 
-        System.out.println(vector1.minus(vectorTwo));
+//        System.out.println(vector1.plus(vector3));
+//        System.out.println(vector1.minus(vectorTwo));
+
+        System.out.println(Vector.sum(vector1,vector3));
+
+        System.out.println(vector1.plus(vector3));
 
 //        Копирование части массива в вектор
 //        for (int i = 0; i < vectorOne.getSize(); i++){
