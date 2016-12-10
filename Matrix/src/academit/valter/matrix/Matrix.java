@@ -33,7 +33,7 @@ public class Matrix {
 
     @Override
     public String toString() {
-        int countChar = (int) (rows[0].getSize() * 6);
+        int countChar = (int) (rows[0].getSize() * 5 + 4);
         StringBuilder line = new StringBuilder();
         for (int i = 0; i < countChar; i++) {
             line.append("*");

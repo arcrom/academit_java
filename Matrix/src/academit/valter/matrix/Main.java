@@ -10,7 +10,7 @@ public class Main {
         Matrix matrix = new Matrix(2, 3);
         Matrix matrix2 = new Matrix(matrix);
 
-        double array[][] = new double[2][3];
+        double array[][] = new double[2][7];
 
         Matrix matrix3 = new Matrix(array);
 
