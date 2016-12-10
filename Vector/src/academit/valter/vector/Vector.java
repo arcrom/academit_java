@@ -34,12 +34,12 @@ public class Vector {
         return value.length;
     }
 
-    public double getLength() {
-        double length = 0;
+    public int getLength() {
+        int length = 0;
         for (double localValue : this.value) {
             length += Math.pow(localValue, 2);
         }
-        return Math.sqrt(length);
+        return (int)Math.sqrt(length);
     }
 
     public double getValue(int i) {
@@ -102,7 +102,8 @@ public class Vector {
 
     public static Vector minus(Vector a, Vector b) {
         Vector localVector = new Vector((int) Math.max(a.getSize(), b.getSize()));
-        return localVector.minus(a).minus(b);
+        System.arraycopy(a.value, 0, localVector.value, 0, a.value.length);
+        return localVector.minus(b);
     }
 
     public static double scalar(Vector a, Vector b) {

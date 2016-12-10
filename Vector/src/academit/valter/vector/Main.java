@@ -21,9 +21,11 @@ public class Main {
 //        System.out.println(vector1.plus(vector3));
 //        System.out.println(vector1.minus(vectorTwo));
 
-        System.out.println(Vector.sum(vector1,vector3));
+        System.out.println(Vector.minus(vector1,vector3));
 
-        System.out.println(vector1.plus(vector3));
+        System.out.println(vector1.minus(vector3));
+
+        System.out.println(vector1.getLength());
 
 //        Копирование части массива в вектор
 //        for (int i = 0; i < vectorOne.getSize(); i++){
